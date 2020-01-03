@@ -21,7 +21,4 @@ mv ./music_two.txt ./music.txt
 ./mp3_12.py >> ./music_two.txt
 mv ./music_two.txt ./music.txt
  sleep 240
-./mp3_14.py >> ./music_two.txt
-mv ./music_two.txt ./music.txt
- sleep 240
 done

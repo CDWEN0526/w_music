@@ -2,8 +2,8 @@
 cd `dirname $0`
 lian=`ps axu | grep  music_lian | grep -v grep | wc -l`
 if [ ${lian} == 0 ];then
-nohup ./music_lian.sh &
 echo "正在获取网络播放信息，请稍等..."
+./mp3.py  >> ./music.txt &
 sleep 5
 clear
 fi

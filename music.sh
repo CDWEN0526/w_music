@@ -44,7 +44,8 @@ exit 0
 ;;
 "6")
 echo "检查程序是否有更新..."
-git pull && sudo chmod +x ./* -R
+git fetch --all
+git reset --hard origin/master && sudo chmod +x ./* -R
 exit 0
 ;;
 *)

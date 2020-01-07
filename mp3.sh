@@ -8,6 +8,6 @@ else
 while true;do
 	num=$(($RANDOM%${number}))
 	mp3=`cat ./${dir} | sort -n | sed -n "${num}p"`
-	mplayer ${mp3}
+    mplayer -cache 1024 ${mp3}
 done
 fi		           

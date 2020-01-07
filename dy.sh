@@ -53,6 +53,6 @@ cd ${pwd_file}
 sudo nohup aria2c  -x 3 -s 3 "${mp_url}" &
 echo "正在后台下载，请耐心等待..."
 echo "电影将自动保存在：/home/pi/Videos"
-echo "ps:如何判断是否下载完成，在保存路径下没有.aria2后缀的文件，即下载成功..."
+echo -e "\033[31m 注意:由于全速下载，下载过程中会占用大部分网络。\033[0m"
 sleep 8
 chown 

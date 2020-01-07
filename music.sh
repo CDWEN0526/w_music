@@ -4,7 +4,7 @@ lian=`ps axu | grep  music_lian | grep -v grep | wc -l`
 clear
 if [ ${lian} == 0 ];then
 echo "正在获取网络播放信息，请稍等..."
-./mp3.py  >> ./music.txt &
+./mp3_url.py  > ./music.txt &
 nohup ./music_lian.sh &
 sleep 5
 clear

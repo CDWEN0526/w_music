@@ -23,7 +23,7 @@ fi
 testing=0
 fi
 
-echo -e "\033[36m 请输入您的操作：\c \033[0m"
+echo -e "\033[36m    请输入您的操作：\c \033[0m"
 read  number
 echo -e  "\n=======开始执行操作=======\n"
 case $number in 

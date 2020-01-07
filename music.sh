@@ -27,7 +27,7 @@ fi
 aria2c_num=`ps axu | grep aria2c | grep -v gre | wc -l`
 if [[ ${aria2c_num} != 0 ]];then
 	bai=`sudo cat  /home/pi/Videos/nohup.out | grep % | tail -n 1 | awk -F '(' '{print $2}' | awk -F ')' '{print $1}'`
-	if [ -n ${aria2c_num} ];then
+	if [ ! -n ${bai} ];then
 		bai="0%"
 	fi
 	echo -e "\033[35m    电影完成下载:${bai}\033[0m"

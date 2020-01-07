@@ -10,6 +10,7 @@ data = {
     'id':'155782152289'
 }
 lists = []
+requests.get("https://make.quwj.com/project/189")
 url_requests = requests.get(url,params=data)
 songid = url_requests.text 
 matchobj = re.finditer( '\"songIds\":.*?]',songid)

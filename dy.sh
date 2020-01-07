@@ -8,6 +8,7 @@ if [ $? -ne 0 ];then
 	sudo apt -y install aria2
 fi
 echo "数据来源于：http://www.kk2w.cc"
+echo "此程序只提供电影下载，电视剧无法下载..."
 read -p "请输入你要下载的电影名：" dy_name
 
 dy_url=`curl -s -d "wd=${dy_name}" -i http://www.kk2w.cc/index.php?m=vod-search | grep p1 | grep m1 | sed "s@\">@\n@g" | grep html | sed 's@href=\"@\n@g' | sed 's@title=\"@@g' | sed 's@\"@@g' | grep html`

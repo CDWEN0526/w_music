@@ -23,8 +23,24 @@ fi
 testing=0
 fi
 
+##
+aria2c_num=`ps axu | grep aria2c | grep -v gre | wc -l`
+if [[ ${aria2c_num} != 0 ]];then
+	bai=`sudo cat  /home/pi/Videos/nohup.out | grep % | tail -n 1 | awk -F '(' '{print $2}' | awk -F ')' '{print $1}'`
+	if [ -n ${aria2c_num} ];then
+		bai="0%"
+	fi
+	echo -e "\033[35m    电影完成下载:${bai}\033[0m"
+	echo -e "\033[35m    按回车刷新下载进度...\033[0m"
+else
+	echo -e "\033[35m    当前无下载\033[0m"
+	sudo rm -rf /home/pi/Videos/nohup.out
+fi
+###
 echo -e "\033[36m    请输入您的操作：\c \033[0m"
 read  number
+
+
 echo -e  "\n=======开始执行操作=======\n"
 case $number in 
 "1")
@@ -68,7 +84,7 @@ git reset --hard origin/master && sudo chmod +x ./* -R
 exit 0
 ;;
 *)
-echo "异常操作..."
+echo "正在刷新操作..."
 sleep 1
 ;;
 esac

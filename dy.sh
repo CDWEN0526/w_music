@@ -47,10 +47,12 @@ read -p "请输入你的选择：" dos
 dos="x_${dos}"
 mp_url=`eval echo '$'"${dos}"`
 
-read -p "请输入电影保存路径：" pwd_file
+#read -p "请输入电影保存路径：" pwd_file
+pwd_file=/home/pi/Videos
 cd ${pwd_file}
 sudo nohup aria2c  -x 3 -s 3 "${mp_url}" &
 echo "正在后台下载，请耐心等待..."
+echo "电影将自动保存在：/home/pi/Videos"
 echo "ps:如何判断是否下载完成，在保存路径下没有.aria2后缀的文件，即下载成功..."
-sleep 5
+sleep 8
 chown 

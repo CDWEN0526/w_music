@@ -3,7 +3,7 @@ cd `dirname $0`
 lian=`ps axu | grep  music_lian | grep -v grep | wc -l`
 clear
 if [ ${lian} == 0 ];then
-echo -e "请把耳机，或音响，插入树莓派上.\n正在获取网络播放信息，请稍等..."
+echo -e "请把耳机，或音响，插入树莓派上。\n正在获取网络播放信息，请稍等..."
 ./mp3_url.py  > ./music.txt &
 nohup ./music_lian.sh 2> /dev/null &
 sleep 5

@@ -29,6 +29,7 @@ down_url=`curl -s -i ${x_url} | sed 's@<a@\n<a@g'| sed 's@a>@a>\n@g' | grep mp4 
 
 if [ ! -n "${down_url}" ];then
 	echo "未找到下载资源..."
+	sleep 2
 	exit 0
 fi
 

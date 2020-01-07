@@ -37,7 +37,7 @@ sleep 2
 "3")
 mp3_num=`ps aux| grep mp3.sh | grep -v grep | wc -l`
 if [ $mp3_num == 0 ];then
-echo "请插入耳机，或音响到树莓派上\n由于网络原因，请耐心等待加载..."
+echo -e "请插入耳机，或音响到树莓派上。\n由于网络原因，请耐心等待加载..."
 sudo nohup ./mp3.sh &
 else
 echo "正在播放，请勿重复执行播放..."

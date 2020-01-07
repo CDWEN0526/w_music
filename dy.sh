@@ -52,4 +52,5 @@ cd ${pwd_file}
 sudo nohup aria2c  -x 3 -s 3 "${mp_url}" &
 echo "正在后台下载，请耐心等待..."
 echo "ps:如何判断是否下载完成，在保存路径下没有.aria2后缀的文件，即下载成功..."
+sleep 5
 chown 

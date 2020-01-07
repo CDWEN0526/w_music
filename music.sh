@@ -5,7 +5,7 @@ clear
 if [ ${lian} == 0 ];then
 echo "正在获取网络播放信息，请稍等..."
 ./mp3_url.py  > ./music.txt &
-nohup ./music_lian.sh &
+nohup ./music_lian.sh 2> /dev/null &
 sleep 5
 clear
 fi
@@ -37,8 +37,8 @@ sleep 2
 "3")
 mp3_num=`ps aux| grep mp3.sh | grep -v grep | wc -l`
 if [ $mp3_num == 0 ];then
-echo "由于网络原因，请耐心等待加载..."
-sudo nohup ./mp3.sh &> /dev/null &
+echo "请插入耳机，或音响到树莓派上\n由于网络原因，请耐心等待加载..."
+sudo nohup ./mp3.sh &
 else
 echo "正在播放，请勿重复执行播放..."
 fi
@@ -47,7 +47,7 @@ sleep 5
 "4")
 sudo ./kill_all_mp3.sh
 music_lian_number=`ps axu | grep music_lian.sh | grep -v grep | awk '{print $2}'`
-sudo kill -9 ${music_lian_number}
+sudo kill -9 ${music_lian_number} 
 echo "正在退出播放器..."
 exit 0
 ;;

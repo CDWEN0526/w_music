@@ -85,7 +85,7 @@ sudo ./kill_mplay_mp3.sh
 echo "进入歌曲搜索程序，暂停当前播放..."
 sleep 2
 clear
-read -p "请输入你要搜索的歌曲：" musicc 
+read -p "请输入你要搜索的歌曲/歌手：" musicc 
 ./sousuo.py "${musicc}"
 sleep 4
 ;;

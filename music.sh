@@ -19,7 +19,7 @@ echo -e "\033[34m     1、 切换歌曲\n     2、 调整音量\n     3、 播�
 if [[ $testing == 1 ]];then
 git pull >/dev/null 2>&1
 if [[ $? == "1" ]];then
-echo -e "\033[31m 您好，发现有更新，输入\"8\"进行更新程序。 \033[0m"
+echo -e "\033[31m您好，发现有更新，输入\"8\"进行更新程序。 \033[0m"
 fi
 testing=0
 fi

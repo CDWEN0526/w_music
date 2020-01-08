@@ -24,7 +24,7 @@ mp3_url = "https://player.lmih.cn/api/musicUrl"
 
 zhizhen = 0
 for i in number:
-    if zhizhen == 10:
+    if zhizhen == 5:
         break
 
     mp3_data = {

@@ -6,20 +6,20 @@ if [ ${lian} == 0 ];then
 echo -e "请把耳机，或音响，插入树莓派上。\n正在获取网络播放信息，请稍等..."
 ./mp3_url.py  > ./music.txt &
 nohup ./music_lian.sh 2> /dev/null &
-nohup mplayer ./mp3play.mp3 &
+nohup mplayer ./mp3play.mp3 2>/dev/null &
 sleep 5
 clear
 fi
 testing=1
 while true;do
-echo -e " " 
+echo -e "\033[36m作者:CDWEN  更新时间：2020/1/8\033[0m" 
 echo -e "\033[31m ===树莓派网络音乐程序=== \033[0m"
-echo -e "\033[34m     1、 切换歌曲\n     2、 调整音量\n     3、 播放音乐\n     4、 电影下载\n     5、 终止播放\n     6、 后台运行\n     7、 更新程序\n \033[0m"
+echo -e "\033[34m     1、 切换歌曲\n     2、 调整音量\n     3、 播放音乐\n     4、 电影下载\n     5、 终止程序\n     6、 歌曲搜索\n     7、 后台运行\n     8、 更新程序\n \033[0m"
 
 if [[ $testing == 1 ]];then
 git pull >/dev/null 2>&1
 if [[ $? == "1" ]];then
-echo -e "\033[31m 您好，发现有更新，输入\"7\"进行更新程序。 \033[0m"
+echo -e "\033[31m 您好，发现有更新，输入\"8\"进行更新程序。 \033[0m"
 fi
 testing=0
 fi
@@ -34,8 +34,14 @@ if [[ ${aria2c_num} != 0 ]];then
 	echo -e "\033[35m    电影完成下载:${bai}\033[0m"
 	echo -e "\033[35m    按回车刷新下载进度...\033[0m"
 else
-	echo -e "\033[35m    当前无下载\033[0m"
+    mplay_info=`ps axu | grep mplayer | grep -v grep | wc -l`
+	if [[ ${mplay_info} == 0 ]];then
+	echo -e "\033[35m无下载项         播放暂停\033[0m"
 	sudo rm -rf /home/pi/Videos/nohup.out
+	else 
+	echo -e "\033[35m无下载项         正在播放\033[0m"
+	sudo rm -rf /home/pi/Videos/nohup.out
+	fi
 fi
 ###
 echo -e "\033[36m    请输入您的操作：\c \033[0m"
@@ -55,7 +61,7 @@ sleep 2
 mp3_num=`ps aux| grep mp3.sh | grep -v grep | wc -l`
 if [ $mp3_num == 0 ];then
 echo -e "请插入耳机，或音响到树莓派上。\n由于网络原因，请耐心等待加载..."
-sudo nohup ./mp3.sh &
+sudo nohup ./mp3.sh 2>/dev/null &
 else
 echo "正在播放，请勿重复执行播放..."
 fi
@@ -75,10 +81,19 @@ echo "正在退出播放器..."
 exit 0
 ;;
 "6")
+sudo ./kill_mplay_mp3.sh
+echo "进入歌曲搜索程序，暂停当前播放..."
+sleep 2
+clear
+read -p "请输入你要搜索的歌曲：" musicc 
+./sousuo.py "${musicc}"
+sleep 4
+;;
+"7")
 echo "后台运行中..."
 exit 0
 ;;
-"7")
+"8")
 echo "检查程序是否有更新..."
 git fetch --all
 git reset --hard origin/master && sudo chmod +x ./* -R

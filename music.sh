@@ -88,6 +88,7 @@ clear
 read -p "请输入你要搜索的歌曲/歌手：" musicc 
 ./sousuo.py "${musicc}"
 sleep 4
+sudo nohup ./mp3.sh 2>/dev/null &
 ;;
 "7")
 echo "后台运行中..."

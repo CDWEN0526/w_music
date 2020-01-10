@@ -4,7 +4,9 @@ import requests
 import json
 import re
 import os
-path = '/data/'
+import sys
+import random
+path = sys.argv[1]
 url = 'https://player.lmih.cn/api/playerlist'
 data = {
     'id':'155782152289'
@@ -21,7 +23,7 @@ for match in matchobj:
 number = lists[11]['songIds']
 
 mp3_url = "https://player.lmih.cn/api/musicUrl"
-
+random.shuffle(number)
 zhizhen = 0
 for i in number:
     if zhizhen == 5:
@@ -41,15 +43,15 @@ for i in number:
     except KeyError:
         #print("未找到下载资源。。。")
         continue
-    mp3_name = path + str(i) + '.mp3'
-    """
+    mp3_name = path + '/' + str(i) + '.mp3'
+
     download = requests.get(mp3,headers=headers)
     if os.path.exists(mp3_name) == False:
         with open(mp3_name,'wb') as files:
-            print("创建" + str(i) +"的下载。。。")
+            #print("创建" + str(i) +"的下载。。。")
             files.write(download.content)
     else:
-        print("已存在")
-    """
-    print(mp3)
+        pass
+        #print("已存在")
+
     zhizhen += 1

@@ -1,13 +1,14 @@
 #!/bin/bash
-dir='music.txt'
-number=`cat ./${dir} | wc -l`
+dir='music_file'
+number=`ls ./${dir} | wc -l`
 comm=`which mplayer 2> /dev/null`
 if [[ $comm == "" ]];then
   sudo apt-get install mplayer
 else
 while true;do
 	num=$(($RANDOM%${number}))
-	mp3=`cat ./${dir} | sort -n | sed -n "${num}p"`
-    mplayer -cache 1024 ${mp3}
+	mp3=`ls ./${dir} | sort -n | sed -n "${num}p"`
+    mplayer ./${dir}/${mp3}
+	rm -rf ./${dir}/${mp3}
 done
 fi		           

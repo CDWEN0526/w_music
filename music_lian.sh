@@ -1,5 +1,8 @@
 #!/bin/bash
 a=`pwd`
+if [ ! -d "${a}/music_file" ];
+mkdir ${a}/music_file
+fi
 while true;do
 if [[ `ls ./music_file | wc -l` -le 2 ]];then
 ./mp3.py "${a}/music_file"

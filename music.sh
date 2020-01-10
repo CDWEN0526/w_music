@@ -4,7 +4,7 @@ paths=`dirname $0`
 lian=`ps axu | grep  music_lian | grep -v grep | wc -l`
 clear
 
-mkdir ${paths}/music_file >> /dev/null
+mkdir ${paths}/music_file &> /dev/null
 
 if [ ${lian} == 0 ];then
 echo -e "请把耳机，或音响，插入树莓派上。\n正在获取网络播放信息，请稍等..."

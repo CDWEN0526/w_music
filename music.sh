@@ -59,7 +59,7 @@ case $number in
 number_mplayer=`ps axu | grep mplayer | grep -v grep`
 jc_mplayer=`echo ${number_mplayer} | awk '{print $2}'`
 info_mplayer=`echo ${number_mplayer} | awk '{print $8}'`
-if [[ $info_mplayer == "SL+" ]];then
+if [[ $info_mplayer == "S"* ]];then
 sudo kill -STOP ${jc_mplayer}
 echo "暂停播放"
 else

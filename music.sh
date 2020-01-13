@@ -3,9 +3,9 @@ cd `dirname $0`
 paths=`dirname $0`
 lian=`ps axu | grep  music_lian | grep -v grep | wc -l`
 clear
-
-mkdir ${paths}/music_file &> /dev/null
-
+if [ ! -d "${paths}/music_file" ];then
+mkdir ${paths}/music_file
+fi
 if [ ${lian} == 0 ];then
 echo -e "请把耳机，或音响，插入树莓派上。\n正在获取网络播放信息，请稍等..."
 nohup ./music_lian.sh  2> /dev/null &
@@ -14,12 +14,12 @@ sleep 5
 clear
 fi
 testing=1
-tianqi=`./tq.py`
+#tianqi=`./tq.py`
 while true;do
 echo -e "\033[36m作者:CDWEN  更新时间：2020/1/8\033[0m" 
-echo -e "${tianqi}"
+#echo -e "${tianqi}"
 echo -e "\033[31m ===树莓派网络音乐程序=== \033[0m"
-echo -e "\033[34m     1、 切换歌曲\n     2、 调整音量\n     3、 播放音乐\n     4、 电影下载\n     5、 终止程序\n     6、 歌曲搜索\n     7、 后台运行\n     8、 更新程序\n \033[0m"
+echo -e "\033[34m     0、 暂停开始\n     1、 切换歌曲\n     2、 调整音量\n     3、 播放音乐\n     4、 电影下载\n     5、 终止程序\n     6、 歌曲搜索\n     7、 后台运行\n     8、 更新程序\n \033[0m"
 
 if [[ $testing == 1 ]];then
 git pull >/dev/null 2>&1
@@ -55,6 +55,19 @@ read  number
 
 echo -e  "\n=======开始执行操作=======\n"
 case $number in 
+"0")
+number_mplayer=`ps axu | grep mplayer | grep -v grep`
+jc_mplayer=`echo ${number_mplayer} | awk '{print $2}'`
+info_mplayer=`echo ${number_mplayer} | awk '{print $8}'`
+if [[ $info_mplayer == "SL+" ]];then
+sudo kill -STOP ${jc_mplayer}
+echo "暂停播放"
+else
+sudo kill -CONT ${jc_mplayer}
+echo "继续播放"
+fi
+sleep 2
+;;
 "1")
 ./next_mp3.sh
 sleep 2

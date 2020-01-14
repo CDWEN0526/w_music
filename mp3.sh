@@ -8,9 +8,9 @@ else
 while true;do
 	num=$(($RANDOM%${number}))
 	mp3=`ls ./${dir} | sort -n | sed -n "${num}p"`
+	if [[ -n $mp3 ]];then
     mplayer ./${dir}/${mp3}
-       if [[ -n ${mp3} ]];then
 	rm -rf ./${dir}/${mp3}
-       fi
+	fi
 done
 fi		           

@@ -26,7 +26,7 @@ mp3_url = "https://player.lmih.cn/api/musicUrl"
 random.shuffle(number)
 zhizhen = 0
 for i in number:
-    if zhizhen == 5:
+    if zhizhen == 3:
         break
 
     mp3_data = {
@@ -41,17 +41,17 @@ for i in number:
     try:
         mp3 = mp3_head.headers['location']
     except KeyError:
-        #print("未找到下载资源。。。")
+        print("未找到缓存资源，已忽略...")
         continue
     mp3_name = path + '/' + str(i) + '.mp3'
 
     download = requests.get(mp3,headers=headers)
     if os.path.exists(mp3_name) == False:
         with open(mp3_name,'wb') as files:
-            #print("创建" + str(i) +"的下载。。。")
+            print("创建" + str(i) +"的缓存，请稍后...")
             files.write(download.content)
     else:
         pass
-        #print("已存在")
+        print("缓存已存在")
 
     zhizhen += 1

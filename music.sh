@@ -8,6 +8,10 @@ mkdir ${paths}/music_file
 fi
 if [ ${lian} == 0 ];then
 echo -e "请把耳机，或音响，插入树莓派上。\n正在获取网络播放信息，请稍等..."
+music_file_ls=`ls ${paths}/music_file | wc -l`
+if [ ${music_file_ls} == 0 ];then
+./mp3_url.py "${paths}/music_file"
+fi
 nohup ./music_lian.sh  2> /dev/null &
 nohup mplayer ./mp3play.mp3 2>/dev/null &
 sleep 5

@@ -20,7 +20,7 @@ fi
 testing=1
 #tianqi=`./tq.py`
 while true;do
-echo -e "\033[36m作者:CDWEN  更新时间：2020/1/14\033[0m" 
+echo -e "\033[36m作者:CDWEN  更新时间：2020/1/15\033[0m" 
 #echo -e "${tianqi}"
 echo -e "\033[31m ===树莓派网络音乐程序=== \033[0m"
 echo -e "\033[34m     0、 暂停开始\n     1、 切换歌曲\n     2、 调整音量\n     3、 播放音乐\n     4、 电影下载\n     5、 终止程序\n     6、 歌曲搜索\n     7、 后台运行\n     8、 更新程序\n \033[0m"
@@ -102,16 +102,50 @@ sudo kill -9 ${music_lian_number}
 echo "正在退出播放器..."
 exit 0
 ;;
+#音乐搜索功能
 "6")
 sudo ./kill_mplay_mp3.sh
 echo "进入歌曲搜索程序，暂停当前播放..."
 sleep 2
 clear
+#搜索页面效果展示
+echo "=========音乐搜索先锋========="
+echo ""
+echo -e "\033[34m    1、网易\n    2、酷狗\n    3、百度\n\033[0m"
+read -p "请输入你要选择的搜索源：" sou
+
+case $sou in
+"1")
+echo "进入网易搜索引擎."
+sleep 1
+clear
 echo "资源来自：http://music.zhuolin.wang/"
 read -p "请输入你要搜索的歌曲/歌手：" musicc 
-./sousuo.py "${musicc}"
-sleep 4
+./sousuo_wangyi.py ${musicc}
+sleep 2
+;;
 
+"2")
+echo "进入酷狗搜索引擎."
+sleep 1
+clear
+echo "资源来自：http://music.zhuolin.wang/"
+read -p "请输入你要搜索的歌曲/歌手：" musicc 
+./sousuo_kugou.py ${musicc}
+sleep 2
+;;
+"3")
+echo "进入百度搜索引擎."
+sleep 1
+clear
+echo "资源来自：http://music.zhuolin.wang/"
+read -p "请输入你要搜索的歌曲/歌手：" musicc 
+./sousuo_baidu.py ${musicc}
+sleep 2
+;;
+esac
+
+######
 ;;
 "7")
 echo "后台运行中..."
